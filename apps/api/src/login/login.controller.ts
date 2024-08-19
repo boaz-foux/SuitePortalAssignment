@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Post, Req, Res, UseGuards } from '@nestj
 import { LoginService } from './login.service';
 import { LoginDto } from './login.dto';
 import { LoginGuard } from './login.guard';
-import { LOGIN_COOKIE_NAME, OK_JSON } from './login.config';
+import { LOGIN_COOKIE_NAME, OK_JSON, OK_JSON_STRING } from './login.config';
 
 @Controller('login')
 export class LoginController {
@@ -23,12 +23,12 @@ export class LoginController {
   public async login(@Body() { username, password }: LoginDto, @Res() res) {
     const token = await this.LoginService.login(username, password);
     res.cookie(LOGIN_COOKIE_NAME, token, {httpOnly: true});
-    res.end(OK_JSON);
+    res.end(OK_JSON_STRING);
   }
 
   @Delete('/')
   public async logout(@Res() res) {
     res.cookie(LOGIN_COOKIE_NAME, '');
-    res.end(OK_JSON);
+    res.end(OK_JSON_STRING);
   }
 }

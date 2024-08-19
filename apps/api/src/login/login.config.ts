@@ -9,4 +9,6 @@ export const ADMIN = {
 
 export const LOGIN_COOKIE_NAME = 'Authorization';
 
-export const OK_JSON = JSON.stringify({ status: 'ok' });
+export const OK_JSON = { status: 'ok' };
+
+export const OK_JSON_STRING = JSON.stringify(OK_JSON);
