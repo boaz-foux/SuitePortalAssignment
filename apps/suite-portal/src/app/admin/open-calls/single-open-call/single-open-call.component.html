@@ -1,0 +1,8 @@
+<mat-card-content>
+    <div *ngFor="let entrie of getEntries()">
+        {{entrie[0]}} :<b>{{entrie[1]}}</b>
+    </div>
+    <button mat-raised-button color="accent" (click)="onClick()">
+        Close
+    </button>
+</mat-card-content>

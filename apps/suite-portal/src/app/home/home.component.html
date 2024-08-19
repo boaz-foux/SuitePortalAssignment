@@ -1,53 +1,41 @@
-<mat-grid-list cols="1" rowHeight="2:1">
-  <mat-grid-tile>
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          Maintenance Request Form
-        </mat-card-title>
-      </mat-card-header>
+<card-wrapper [label]="'Maintenance Request Form'">
+  <form class="maint-form" [formGroup]="maintanceCallForm" #formDirective="ngForm" (submit)="onSubmit(formDirective)">
+    <mat-form-field>
+      <mat-label>Apartment Unit #</mat-label>
+      <input matInput formControlName="unitNumber" type="text" />
+    </mat-form-field>
 
-      <mat-card-content>
-        <form class="maint-form">
-          <mat-form-field>
-            <mat-label>Apartment Unit #</mat-label>
-            <input matInput type="text" />
-          </mat-form-field>
+    <mat-form-field>
+      <mat-label>Requester Name</mat-label>
+      <input matInput formControlName="name" type="text" />
+    </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Requester Name</mat-label>
-            <input matInput type="text" />
-          </mat-form-field>
+    <mat-form-field>
+      <mat-label>Requester Email</mat-label>
+      <input matInput formControlName="email" type="email" />
+    </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Requester Email</mat-label>
-            <input matInput type="email" />
-          </mat-form-field>
+    <mat-form-field>
+      <mat-label>Service Type</mat-label>
+      <mat-select formControlName="serviceType">
+        <mat-option *ngFor="let serviceType of serviceTypes" [value]="serviceType">
+          {{serviceType}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Service Type</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let serviceType of serviceTypes" [value]="serviceType">
-                {{serviceType}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+    <mat-form-field>
+      <mat-label>Summary</mat-label>
+      <input matInput formControlName="summary" type="text" />
+    </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Summary</mat-label>
-            <input matInput type="text" />
-          </mat-form-field>
+    <mat-form-field>
+      <mat-label>Details</mat-label>
+      <textarea matInput formControlName="details"></textarea>
+    </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Details</mat-label>
-            <textarea matInput></textarea>
-          </mat-form-field>
-
-          <button mat-raised-button color="accent">
-            Submit
-          </button>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+    <button mat-raised-button color="accent">
+      Submit
+    </button>
+  </form>
+</card-wrapper>

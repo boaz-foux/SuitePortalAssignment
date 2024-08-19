@@ -13,6 +13,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { MaintenanceService } from './services';
+import { CardWrapperComponent } from './components';
 
 @NgModule({
   imports: [
@@ -30,6 +32,9 @@ import { MatCardModule } from '@angular/material/card';
     MatTableModule,
     MatToolbarModule,
   ],
+  declarations:[
+    CardWrapperComponent
+  ],
   exports: [
     MatButtonModule,
     MatCardModule,
@@ -44,6 +49,8 @@ import { MatCardModule } from '@angular/material/card';
     MatSnackBarModule,
     MatTableModule,
     MatToolbarModule,
+    CardWrapperComponent,
   ],
+  providers: [MaintenanceService]
 })
-export class SharedModule {}
+export class SharedModule { }

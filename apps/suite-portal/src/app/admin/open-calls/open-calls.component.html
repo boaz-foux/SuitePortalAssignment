@@ -1,0 +1,10 @@
+<button mat-raised-button color="accent" (click)="logout()">
+    Log Out
+</button>
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile appearance="outlined" *ngFor="let openCall of openCalls$ | async">
+        <mat-card>
+            <single-open-call [request]="openCall" (close)="closeCall(openCall.id)"></single-open-call>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

@@ -2,11 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { HomeModule } from './home/home.module';
+import { AdminComponent } from './admin/admin.component';
+import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
   },
   {
     path: '**',
@@ -17,6 +23,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     HomeModule,
+    AdminModule,
     RouterModule.forRoot(routes, {
       initialNavigation: 'enabled',
       enableTracing: true,
