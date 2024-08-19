@@ -1,6 +1,7 @@
-import { BadRequestException, Body, Controller, Post, Get, Param } from '@nestjs/common';
-import { MaintenanceRequest } from '@suiteportal/api-interfaces';
+import { BadRequestException, Body, Controller, Post, Get, Param, Put, UseGuards } from '@nestjs/common';
 import { MaintenanceRequestService } from './maintenance-request.service';
+import { maintenanceRequestDto } from './maintenance-request.dto';
+import { LoginGuard } from '../login/login.guard';
 
 @Controller('maintenance-requests')
 export class MaintenanceRequestController {
@@ -13,14 +14,8 @@ export class MaintenanceRequestController {
 
   @Post('/')
   public async createMaintenanceRequest(
-    @Body() maintenanceRequest: MaintenanceRequest,
+    @Body() maintenanceRequest: maintenanceRequestDto,
   ) {
-    if (!maintenanceRequest?.summary) {
-      throw new BadRequestException('Must provide a valid summary');
-    }
-    if (!maintenanceRequest?.serviceType) {
-      throw new BadRequestException('Must provide a valid Service Type');
-    }
     return await this.maintenanceRequestService.createMaintenanceRequest(maintenanceRequest);
   }
 
@@ -32,6 +27,20 @@ export class MaintenanceRequestController {
       throw new BadRequestException('No id provided');
     }
     return await this.maintenanceRequestService.getMaintenanceRequest(id);
+  }
+
+  @UseGuards(LoginGuard)
+  @Get('/')
+  public async getOpenMaintenanceRequests() {
+    return await this.maintenanceRequestService.getOpenMaintenanceRequests();
+  }
+
+  @UseGuards(LoginGuard)
+  @Put('/:id/close')
+  public async closeMaintenanceRequest(
+    @Param('id') id: string,
+  ) {
+    return await this.maintenanceRequestService.closeMaintenanceRequest(id);
   }
 
 }

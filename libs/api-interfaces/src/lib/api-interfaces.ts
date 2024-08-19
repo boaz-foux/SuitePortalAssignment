@@ -5,12 +5,7 @@ export enum ServiceType {
   Plumbing = 'plumbing',
 }
 
-export const ALL_SERVICE_TYPES = [
-  ServiceType.Electrical ,
-  ServiceType.General ,
-  ServiceType.PestControl ,
-  ServiceType.Plumbing ,
-];
+export const ALL_SERVICE_TYPES = Object.keys(ServiceType);
 
 export interface MaintenanceRequest {
   // Name of the requester
